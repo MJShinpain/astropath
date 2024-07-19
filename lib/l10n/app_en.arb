@@ -1,0 +1,26 @@
+{
+  "@@locale": "en",
+  "appTitle": "Your Romantic City",
+  "venusCityFinder": "Venus City Finder",
+  "moonCityFinder": "Moon City Finder",
+  "enterBirthPlace": "Enter birth place",
+  "quickAccessCities": "Quick Access Cities:",
+  "selectedLocation": "Selected Location:",
+  "notSelected": "Not selected",
+  "selectBirthDateTime": "Select Birth Date and Time",
+  "selectedDateTime": "Selected Date and Time:",
+  "findRomanticCities": "Find Romantic Cities",
+  "findMoonCities": "Find Moon Cities",
+  "citiesWithin2000km": "Cities within 2000 km based on {celestialBody} positions:",
+  "@citiesWithin2000km": {
+    "placeholders": {
+      "celestialBody": {
+        "type": "String"
+      }
+    }
+  },
+  "rising": "Rising:",
+  "setting": "Setting:",
+  "culminating": "Culminating:",
+  "noCitiesWithin2000km": "No cities within 2000 km"
+}

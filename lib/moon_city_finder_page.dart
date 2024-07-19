@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'city_data.dart';
-import 'venus_calculations.dart';
+import 'moon_calculations.dart';
 import 'utils.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class VenusCityFinderPage extends StatefulWidget {
+class MoonCityFinderPage extends StatefulWidget {
   @override
-  _VenusCityFinderPageState createState() => _VenusCityFinderPageState();
+  _MoonCityFinderPageState createState() => _MoonCityFinderPageState();
 }
 
-class _VenusCityFinderPageState extends State<VenusCityFinderPage> {
+class _MoonCityFinderPageState extends State<MoonCityFinderPage> {
   DateTime _selectedDateTime = DateTime.now();
   String _result = '';
   bool _isLoading = false;
@@ -36,7 +36,7 @@ class _VenusCityFinderPageState extends State<VenusCityFinderPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.venusCityFinder),
+        title: Text(AppLocalizations.of(context)!.moonCityFinder),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
@@ -76,8 +76,8 @@ class _VenusCityFinderPageState extends State<VenusCityFinderPage> {
             Text("${AppLocalizations.of(context)!.selectedDateTime} ${DateFormat('yyyy-MM-dd HH:mm').format(_selectedDateTime)} ${_selectedTimeZone.name}"),
             SizedBox(height: 20),
             ElevatedButton(
-              child: Text(AppLocalizations.of(context)!.findRomanticCities),
-              onPressed: _isLoading || _selectedCity == null ? null : _findRomanticCities,
+              child: Text(AppLocalizations.of(context)!.findMoonCities),
+              onPressed: _isLoading || _selectedCity == null ? null : _findMoonCities,
             ),
             SizedBox(height: 20),
             _isLoading
@@ -146,7 +146,7 @@ class _VenusCityFinderPageState extends State<VenusCityFinderPage> {
     }
   }
 
-  void _findRomanticCities() {
+  void _findMoonCities() {
     if (_selectedCity == null) return;
 
     setState(() {
@@ -158,18 +158,18 @@ class _VenusCityFinderPageState extends State<VenusCityFinderPage> {
     tz.TZDateTime utcDateTime = selectedTZDateTime.toUtc();
 
     double jd = julianDay(utcDateTime);
-    VenusPosition venusPos = calculateVenusPosition(jd);
+    MoonPosition moonPos = calculateMoonPosition(jd);
 
-    List<double> risingPos = calculateRisingPosition(
-        venusPos.longitude, venusPos.latitude, jd,
+    List<double> risingPos = calculateMoonRisingPosition(
+        moonPos.longitude, moonPos.latitude, jd,
         _selectedCity!.latitude, _selectedCity!.longitude
     );
-    List<double> settingPos = calculateSettingPosition(
-        venusPos.longitude, venusPos.latitude, jd,
+    List<double> settingPos = calculateMoonSettingPosition(
+        moonPos.longitude, moonPos.latitude, jd,
         _selectedCity!.latitude, _selectedCity!.longitude
     );
-    List<double> culminatingPos = calculateCulminatingPosition(
-        venusPos.longitude, venusPos.latitude, jd,
+    List<double> culminatingPos = calculateMoonCulminatingPosition(
+        moonPos.longitude, moonPos.latitude, jd,
         _selectedCity!.latitude, _selectedCity!.longitude
     );
 
@@ -196,7 +196,7 @@ class _VenusCityFinderPageState extends State<VenusCityFinderPage> {
   }
 
   String _formatResults(List<Map<String, dynamic>> rising, List<Map<String, dynamic>> setting, List<Map<String, dynamic>> culminating) {
-    String result = 'Cities within 2000 km based on Venus positions:\n\n';
+    String result = AppLocalizations.of(context)!.citiesWithin2000km(celestialBody);
 
     result += AppLocalizations.of(context)!.rising + '\n';
     if (rising.isEmpty) {

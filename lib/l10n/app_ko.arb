@@ -1,0 +1,26 @@
+{
+  "@@locale": "ko",
+  "appTitle": "당신의 로맨틱한 도시",
+  "venusCityFinder": "금성 도시 찾기",
+  "moonCityFinder": "달 도시 찾기",
+  "enterBirthPlace": "출생지 입력",
+  "quickAccessCities": "빠른 접근 도시:",
+  "selectedLocation": "선택된 위치:",
+  "notSelected": "선택되지 않음",
+  "selectBirthDateTime": "생년월일 및 시간 선택",
+  "selectedDateTime": "선택된 날짜 및 시간:",
+  "findRomanticCities": "로맨틱한 도시 찾기",
+  "findMoonCities": "달의 도시 찾기",
+  "citiesWithin2000km": "{celestialBody} 위치 기준 2000km 이내 도시:",
+  "@citiesWithin2000km": {
+    "placeholders": {
+      "celestialBody": {
+        "type": "String"
+      }
+    }
+  },
+  "rising": "뜨는 곳:",
+  "setting": "지는 곳:",
+  "culminating": "남중:",
+  "noCitiesWithin2000km": "2000km 이내에 도시가 없습니다"
+}
