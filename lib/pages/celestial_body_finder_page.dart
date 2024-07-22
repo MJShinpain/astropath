@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:timezone/timezone.dart' as tz;
-import 'utils/city_data.dart';
-import 'utils/calculations/moon_calculations.dart';
-import 'utils/utils.dart';
+import '../models/celestial_bodies/celestial_body.dart';
+import '../utils/city_data.dart';
+import '../utils/utils.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class MoonCityFinderPage extends StatefulWidget {
+class CelestialBodyFinderPage extends StatefulWidget {
+  final CelestialBody celestialBody;
+
+  const CelestialBodyFinderPage({Key? key, required this.celestialBody}) : super(key: key);
+
   @override
-  _MoonCityFinderPageState createState() => _MoonCityFinderPageState();
+  _CelestialBodyFinderPageState createState() => _CelestialBodyFinderPageState();
 }
 
-class _MoonCityFinderPageState extends State<MoonCityFinderPage> {
+class _CelestialBodyFinderPageState extends State<CelestialBodyFinderPage> {
   DateTime _selectedDateTime = DateTime.now();
   String _result = '';
   bool _isLoading = false;
@@ -20,11 +24,11 @@ class _MoonCityFinderPageState extends State<MoonCityFinderPage> {
   final TextEditingController _locationController = TextEditingController();
 
   final List<City> _quickAccessCities = [
-    cities.firstWhere((city) => city.name == 'New York City, USA'),
-    cities.firstWhere((city) => city.name == 'London, United Kingdom'),
-    cities.firstWhere((city) => city.name == 'Tokyo, Japan'),
-    cities.firstWhere((city) => city.name == 'Seoul, Korea'),
-  ];
+    cities.firstWhere((city) => city.name == 'New York City, USA', orElse: () => cities.first),
+    cities.firstWhere((city) => city.name == 'London, United Kingdom', orElse: () => cities.first),
+    cities.firstWhere((city) => city.name == 'Tokyo, Japan', orElse: () => cities.first),
+    cities.firstWhere((city) => city.name == 'Seoul, Korea', orElse: () => cities.first),
+  ].where((city) => city != null).toList();
 
   @override
   void initState() {
@@ -36,7 +40,7 @@ class _MoonCityFinderPageState extends State<MoonCityFinderPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.moonCityFinder),
+        title: Text('${widget.celestialBody.name} ${AppLocalizations.of(context)!.cityFinder}'),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
@@ -76,8 +80,8 @@ class _MoonCityFinderPageState extends State<MoonCityFinderPage> {
             Text("${AppLocalizations.of(context)!.selectedDateTime} ${DateFormat('yyyy-MM-dd HH:mm').format(_selectedDateTime)} ${_selectedTimeZone.name}"),
             SizedBox(height: 20),
             ElevatedButton(
-              child: Text(AppLocalizations.of(context)!.findMoonCities),
-              onPressed: _isLoading || _selectedCity == null ? null : _findMoonCities,
+              child: Text(AppLocalizations.of(context)!.findRomanticCities),
+              onPressed: _isLoading || _selectedCity == null ? null : _findCities,
             ),
             SizedBox(height: 20),
             _isLoading
@@ -146,32 +150,31 @@ class _MoonCityFinderPageState extends State<MoonCityFinderPage> {
     }
   }
 
-  void _findMoonCities() {
-    if (_selectedCity == null) return;
+  void _findCities() {
+    if (_selectedCity == null) {
+      print('No city selected'); // Debug log
+      return;
+    }
 
     setState(() {
       _isLoading = true;
       _result = '';
     });
 
+    print('Selected city: ${_selectedCity!.name}'); // Debug log
+    print('Selected date time: $_selectedDateTime'); // Debug log
+
     tz.TZDateTime selectedTZDateTime = tz.TZDateTime.from(_selectedDateTime, _selectedTimeZone);
     tz.TZDateTime utcDateTime = selectedTZDateTime.toUtc();
 
     double jd = julianDay(utcDateTime);
-    MoonPosition moonPos = calculateMoonPosition(jd);
 
-    List<double> risingPos = calculateMoonRisingPosition(
-        moonPos.longitude, moonPos.latitude, jd,
-        _selectedCity!.latitude, _selectedCity!.longitude
-    );
-    List<double> settingPos = calculateMoonSettingPosition(
-        moonPos.longitude, moonPos.latitude, jd,
-        _selectedCity!.latitude, _selectedCity!.longitude
-    );
-    List<double> culminatingPos = calculateMoonCulminatingPosition(
-        moonPos.longitude, moonPos.latitude, jd,
-        _selectedCity!.latitude, _selectedCity!.longitude
-    );
+    List<double> risingPos = widget.celestialBody.calculateRisingPosition(
+        jd, _selectedCity!.latitude, _selectedCity!.longitude);
+    List<double> settingPos = widget.celestialBody.calculateSettingPosition(
+        jd, _selectedCity!.latitude, _selectedCity!.longitude);
+    List<double> culminatingPos = widget.celestialBody.calculateCulminatingPosition(
+        jd, _selectedCity!.latitude, _selectedCity!.longitude);
 
     List<Map<String, dynamic>> nearestRising = _findNearestCities(risingPos[0], risingPos[1]);
     List<Map<String, dynamic>> nearestSetting = _findNearestCities(settingPos[0], settingPos[1]);
@@ -184,6 +187,11 @@ class _MoonCityFinderPageState extends State<MoonCityFinderPage> {
   }
 
   List<Map<String, dynamic>> _findNearestCities(double lat, double lon) {
+    if (lat.isNaN || lon.isNaN) {
+      print('Invalid latitude or longitude'); // Debug log
+      return [];
+    }
+
     var distances = cities.map((city) {
       return <String, dynamic>{
         'city': city,
@@ -196,35 +204,23 @@ class _MoonCityFinderPageState extends State<MoonCityFinderPage> {
   }
 
   String _formatResults(List<Map<String, dynamic>> rising, List<Map<String, dynamic>> setting, List<Map<String, dynamic>> culminating) {
-    String result = AppLocalizations.of(context)!.citiesWithin2000km(celestialBody);
+    String result = AppLocalizations.of(context)!.citiesWithin2000km(widget.celestialBody.name);
 
-    result += AppLocalizations.of(context)!.rising + '\n';
-    if (rising.isEmpty) {
-      result += AppLocalizations.of(context)!.noCitiesWithin2000km + '\n';
-    } else {
-      for (var cityInfo in rising) {
-        result += '${cityInfo['city'].name}: ${cityInfo['distance'].toStringAsFixed(2)} km\n';
-      }
+    result += _formatCityList(AppLocalizations.of(context)!.rising, rising);
+    result += _formatCityList(AppLocalizations.of(context)!.setting, setting);
+    result += _formatCityList(AppLocalizations.of(context)!.culminating, culminating);
+
+    return result;
+  }
+
+  String _formatCityList(String title, List<Map<String, dynamic>> cities) {
+    String result = '$title\n';
+    if (cities.isEmpty) {
+      return result + AppLocalizations.of(context)!.noCitiesWithin2000km + '\n';
     }
-
-    result += AppLocalizations.of(context)!.setting + '\n';
-    if (setting.isEmpty) {
-      result += AppLocalizations.of(context)!.noCitiesWithin2000km + '\n';
-    } else {
-      for (var cityInfo in setting) {
-        result += '${cityInfo['city'].name}: ${cityInfo['distance'].toStringAsFixed(2)} km\n';
-      }
+    for (var cityInfo in cities) {
+      result += '${cityInfo['city'].name}: ${cityInfo['distance'].toStringAsFixed(2)} km\n';
     }
-
-    result += AppLocalizations.of(context)!.culminating + '\n';
-    if (culminating.isEmpty) {
-      result += AppLocalizations.of(context)!.noCitiesWithin2000km + '\n';
-    } else {
-      for (var cityInfo in culminating) {
-        result += '${cityInfo['city'].name}: ${cityInfo['distance'].toStringAsFixed(2)} km\n';
-      }
-    }
-
     return result;
   }
 }

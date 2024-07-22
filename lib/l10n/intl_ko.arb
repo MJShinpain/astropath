@@ -22,5 +22,8 @@
   "rising": "뜨는 곳:",
   "setting": "지는 곳:",
   "culminating": "남중:",
-  "noCitiesWithin2000km": "2000km 이내에 도시가 없습니다"
+  "noCitiesWithin2000km": "2000km 이내에 도시가 없습니다",
+  "cityFinder": "도시 찾기",
+  "venusDescription": "금성",
+  "moonDescription": "달"
 }

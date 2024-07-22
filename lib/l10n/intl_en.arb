@@ -22,5 +22,8 @@
   "rising": "Rising:",
   "setting": "Setting:",
   "culminating": "Culminating:",
-  "noCitiesWithin2000km": "No cities within 2000 km"
+  "noCitiesWithin2000km": "No cities within 2000 km",
+  "cityFinder": "City Finder",
+  "venusDescription": "Venus",
+  "moonDescription": "Moon"
 }

@@ -27,15 +27,20 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appTitle": MessageLookupByLibrary.simpleMessage("Your Romantic City"),
         "citiesWithin2000km": m0,
+        "cityFinder": MessageLookupByLibrary.simpleMessage("City Finder"),
         "culminating": MessageLookupByLibrary.simpleMessage("Culminating:"),
         "enterBirthPlace":
             MessageLookupByLibrary.simpleMessage("Enter birth place"),
+        "findMoonCities":
+            MessageLookupByLibrary.simpleMessage("Find Moon Cities"),
         "findRomanticCities":
             MessageLookupByLibrary.simpleMessage("Find Romantic Cities"),
         "moonCityFinder":
             MessageLookupByLibrary.simpleMessage("Moon City Finder"),
+        "moonDescription": MessageLookupByLibrary.simpleMessage("Moon"),
         "noCitiesWithin2000km":
             MessageLookupByLibrary.simpleMessage("No cities within 2000 km"),
+        "notSelected": MessageLookupByLibrary.simpleMessage("Not selected"),
         "quickAccessCities":
             MessageLookupByLibrary.simpleMessage("Quick Access Cities:"),
         "rising": MessageLookupByLibrary.simpleMessage("Rising:"),
@@ -47,6 +52,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Selected Location:"),
         "setting": MessageLookupByLibrary.simpleMessage("Setting:"),
         "venusCityFinder":
-            MessageLookupByLibrary.simpleMessage("Venus City Finder")
+            MessageLookupByLibrary.simpleMessage("Venus City Finder"),
+        "venusDescription": MessageLookupByLibrary.simpleMessage("Venus")
       };
 }

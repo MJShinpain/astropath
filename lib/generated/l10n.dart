@@ -110,6 +110,16 @@ class S {
     );
   }
 
+  /// `Not selected`
+  String get notSelected {
+    return Intl.message(
+      'Not selected',
+      name: 'notSelected',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Select Birth Date and Time`
   String get selectBirthDateTime {
     return Intl.message(
@@ -140,8 +150,18 @@ class S {
     );
   }
 
+  /// `Find Moon Cities`
+  String get findMoonCities {
+    return Intl.message(
+      'Find Moon Cities',
+      name: 'findMoonCities',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Cities within 2000 km based on {celestialBody} positions:`
-  String citiesWithin2000km(Object celestialBody) {
+  String citiesWithin2000km(String celestialBody) {
     return Intl.message(
       'Cities within 2000 km based on $celestialBody positions:',
       name: 'citiesWithin2000km',
@@ -185,6 +205,36 @@ class S {
     return Intl.message(
       'No cities within 2000 km',
       name: 'noCitiesWithin2000km',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `City Finder`
+  String get cityFinder {
+    return Intl.message(
+      'City Finder',
+      name: 'cityFinder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Venus`
+  String get venusDescription {
+    return Intl.message(
+      'Venus',
+      name: 'venusDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Moon`
+  String get moonDescription {
+    return Intl.message(
+      'Moon',
+      name: 'moonDescription',
       desc: '',
       args: [],
     );

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:timezone/timezone.dart' as tz;
-import 'city_data.dart';
-import 'venus_calculations.dart';
-import 'utils.dart';
+import 'utils/city_data.dart';
+import 'utils/calculations/venus_calculations.dart';
+import 'utils/utils.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class VenusCityFinderPage extends StatefulWidget {
