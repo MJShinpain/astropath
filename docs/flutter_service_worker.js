@@ -3,12 +3,13 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"assets/AssetManifest.bin": "0b0a3415aad49b6e9bf965ff578614f9",
-"assets/AssetManifest.bin.json": "a1fee2517bf598633e2f67fcf3e26c94",
-"assets/AssetManifest.json": "99914b932bd37a50b983c5e7c90ae93b",
+const RESOURCES = {"assets/AssetManifest.bin": "028cdb9d815cee3bf5762aedd42eeae8",
+"assets/AssetManifest.bin.json": "23d5ab055984af9152000a8085800921",
+"assets/AssetManifest.json": "af236ac12b2f46aec036331dff11b999",
 "assets/FontManifest.json": "7b2a36307916a9721811788013e65289",
-"assets/fonts/MaterialIcons-Regular.otf": "0db35ae7a415370b89e807027510caf0",
-"assets/NOTICES": "8669d9a8c803d521f023a07b6cbe46ed",
+"assets/fonts/MaterialIcons-Regular.otf": "8d5637dadda0f2276084eeb6823c1393",
+"assets/NOTICES": "7382f2fe0c5ebe0463dcad7871ddcd05",
+"assets/packages/flutter_map/lib/assets/flutter_map_logo.png": "208d63cc917af9713fc9572bd5c09362",
 "assets/shaders/ink_sparkle.frag": "ecc85a2e95f5e9f53123dcaf8cb9b6ce",
 "canvaskit/canvaskit.js": "738255d00768497e86aa4ca510cce1e1",
 "canvaskit/canvaskit.js.symbols": "74a84c23f5ada42fe063514c587968c6",
@@ -22,14 +23,14 @@ const RESOURCES = {"assets/AssetManifest.bin": "0b0a3415aad49b6e9bf965ff578614f9
 "canvaskit/skwasm.worker.js": "bfb704a6c714a75da9ef320991e88b03",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "flutter.js": "383e55f7f3cce5be08fcf1f3881f585c",
-"flutter_bootstrap.js": "f5c9f57ea0e0defb51f6556f11e9659a",
+"flutter_bootstrap.js": "c323fb25bf3070b1a7e456cb0ad09d7c",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
 "index.html": "31eef59730d532c2db09ab881f0c2e65",
 "/": "31eef59730d532c2db09ab881f0c2e65",
-"main.dart.js": "2521b07efc6fb5557bd96e33c6fdf330",
+"main.dart.js": "e195234678f544730f02848df616c1b3",
 "manifest.json": "e8feefb7a4c488b65025b6ae0299d7d4",
 "version.json": "55548097c3ba26e9d1ebf7fb250b8cff"};
 // The application shell files that are downloaded before a service worker can
