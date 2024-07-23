@@ -1,6 +1,6 @@
 # astropath
 
-A new Flutter project.
+별이 들려주는 당신과 가장 잘 맞는 도시
 
 ## Getting Started
 

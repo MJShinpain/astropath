@@ -25,27 +25,38 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appTitle": MessageLookupByLibrary.simpleMessage("당신의 로맨틱한 도시"),
+        "cancel": MessageLookupByLibrary.simpleMessage("취소"),
         "citiesWithin2000km": m0,
         "cityFinder": MessageLookupByLibrary.simpleMessage("도시 찾기"),
         "culminating": MessageLookupByLibrary.simpleMessage("남중:"),
+        "day": MessageLookupByLibrary.simpleMessage("일"),
         "enterBirthPlace": MessageLookupByLibrary.simpleMessage("출생지 입력"),
+        "enterDateTime": MessageLookupByLibrary.simpleMessage("날짜, 시간을 직접 입력"),
         "findMoonCities": MessageLookupByLibrary.simpleMessage("달의 도시 찾기"),
         "findRomanticCities":
             MessageLookupByLibrary.simpleMessage("로맨틱한 도시 찾기"),
+        "hour": MessageLookupByLibrary.simpleMessage("시"),
+        "minute": MessageLookupByLibrary.simpleMessage("분"),
+        "month": MessageLookupByLibrary.simpleMessage("월"),
         "moonCityFinder": MessageLookupByLibrary.simpleMessage("달 도시 찾기"),
         "moonDescription": MessageLookupByLibrary.simpleMessage("달"),
         "noCitiesWithin2000km":
             MessageLookupByLibrary.simpleMessage("2000km 이내에 도시가 없습니다"),
         "notSelected": MessageLookupByLibrary.simpleMessage("선택되지 않음"),
-        "quickAccessCities": MessageLookupByLibrary.simpleMessage("빠른 접근 도시:"),
+        "ok": MessageLookupByLibrary.simpleMessage("OK"),
+        "quickAccessCities": MessageLookupByLibrary.simpleMessage("도시 예시:"),
         "rising": MessageLookupByLibrary.simpleMessage("뜨는 곳:"),
         "selectBirthDateTime":
             MessageLookupByLibrary.simpleMessage("생년월일 및 시간 선택"),
+        "selectDate": MessageLookupByLibrary.simpleMessage("태어난 날짜는?"),
+        "selectDateTime": MessageLookupByLibrary.simpleMessage("날짜, 시간을 고르기"),
+        "selectTime": MessageLookupByLibrary.simpleMessage("태어난 시간은?"),
         "selectedDateTime":
             MessageLookupByLibrary.simpleMessage("선택된 날짜 및 시간:"),
         "selectedLocation": MessageLookupByLibrary.simpleMessage("선택된 위치:"),
         "setting": MessageLookupByLibrary.simpleMessage("지는 곳:"),
         "venusCityFinder": MessageLookupByLibrary.simpleMessage("금성 도시 찾기"),
-        "venusDescription": MessageLookupByLibrary.simpleMessage("금성")
+        "venusDescription": MessageLookupByLibrary.simpleMessage("금성"),
+        "year": MessageLookupByLibrary.simpleMessage("년")
       };
 }

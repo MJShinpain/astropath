@@ -26,33 +26,46 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appTitle": MessageLookupByLibrary.simpleMessage("Your Romantic City"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "citiesWithin2000km": m0,
         "cityFinder": MessageLookupByLibrary.simpleMessage("City Finder"),
-        "culminating": MessageLookupByLibrary.simpleMessage("Culminating:"),
+        "culminating": MessageLookupByLibrary.simpleMessage("Culminating"),
+        "day": MessageLookupByLibrary.simpleMessage("day"),
         "enterBirthPlace":
             MessageLookupByLibrary.simpleMessage("Enter birth place"),
+        "enterDateTime":
+            MessageLookupByLibrary.simpleMessage("enter date and time"),
         "findMoonCities":
             MessageLookupByLibrary.simpleMessage("Find Moon Cities"),
         "findRomanticCities":
             MessageLookupByLibrary.simpleMessage("Find Romantic Cities"),
+        "hour": MessageLookupByLibrary.simpleMessage("hour"),
+        "minute": MessageLookupByLibrary.simpleMessage("minute"),
+        "month": MessageLookupByLibrary.simpleMessage("month"),
         "moonCityFinder":
             MessageLookupByLibrary.simpleMessage("Moon City Finder"),
         "moonDescription": MessageLookupByLibrary.simpleMessage("Moon"),
         "noCitiesWithin2000km":
             MessageLookupByLibrary.simpleMessage("No cities within 2000 km"),
         "notSelected": MessageLookupByLibrary.simpleMessage("Not selected"),
+        "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "quickAccessCities":
             MessageLookupByLibrary.simpleMessage("Quick Access Cities:"),
-        "rising": MessageLookupByLibrary.simpleMessage("Rising:"),
+        "rising": MessageLookupByLibrary.simpleMessage("Rising"),
         "selectBirthDateTime":
             MessageLookupByLibrary.simpleMessage("Select Birth Date and Time"),
+        "selectDate": MessageLookupByLibrary.simpleMessage("Select Date"),
+        "selectDateTime":
+            MessageLookupByLibrary.simpleMessage("select date and time"),
+        "selectTime": MessageLookupByLibrary.simpleMessage("Select Time"),
         "selectedDateTime":
             MessageLookupByLibrary.simpleMessage("Selected Date and Time:"),
         "selectedLocation":
             MessageLookupByLibrary.simpleMessage("Selected Location:"),
-        "setting": MessageLookupByLibrary.simpleMessage("Setting:"),
+        "setting": MessageLookupByLibrary.simpleMessage("Setting"),
         "venusCityFinder":
             MessageLookupByLibrary.simpleMessage("Venus City Finder"),
-        "venusDescription": MessageLookupByLibrary.simpleMessage("Venus")
+        "venusDescription": MessageLookupByLibrary.simpleMessage("Venus"),
+        "year": MessageLookupByLibrary.simpleMessage("year")
       };
 }

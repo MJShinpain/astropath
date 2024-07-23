@@ -11,4 +11,5 @@ abstract class CelestialBody {
   List<double> calculateRisingPosition(double jde, double observerLat, double observerLon);
   List<double> calculateSettingPosition(double jde, double observerLat, double observerLon);
   List<double> calculateCulminatingPosition(double jde, double observerLat, double observerLon);
+  List<double> calculateNadirPosition(double jde, double observerLat, double observerLon);  // 새로 추가된 메서드
 }

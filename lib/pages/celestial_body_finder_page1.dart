@@ -21,7 +21,6 @@ class CelestialBodyFinderPage extends StatefulWidget {
 class _CelestialBodyFinderPageState extends State<CelestialBodyFinderPage> {
   DateTime _selectedDateTime = DateTime.now();
   String _result = '';
-  String _debugInfo = '';
   bool _isLoading = false;
   late tz.Location _selectedTimeZone;
   City? _selectedCity;
@@ -50,8 +49,6 @@ class _CelestialBodyFinderPageState extends State<CelestialBodyFinderPage> {
               onCitySelected: _selectCity,
             ),
             SizedBox(height: 20),
-            Text("${AppLocalizations.of(context)!.selectedLocation} ${_selectedCity?.name ?? AppLocalizations.of(context)!.notSelected}"),
-            SizedBox(height: 20),
             DateTimeSelector(
               initialDateTime: _selectedDateTime,
               onDateTimeSelected: _updateDateTime,
@@ -66,8 +63,6 @@ class _CelestialBodyFinderPageState extends State<CelestialBodyFinderPage> {
                 ? CircularProgressIndicator()
                 : Column(
               children: [
-                Text(_debugInfo),
-                SizedBox(height: 10),
                 Text(_result),
                 SizedBox(height: 20),
                 MapView(cities: _allNearestCities),
@@ -94,56 +89,40 @@ class _CelestialBodyFinderPageState extends State<CelestialBodyFinderPage> {
   }
 
   void _findCities() {
-    if (_selectedCity == null) return;
+    if (_selectedCity == null) {
+      print('No city selected');
+      return;
+    }
 
     setState(() {
       _isLoading = true;
       _result = '';
-      _debugInfo = '';
       _allNearestCities = [];
     });
 
     tz.TZDateTime selectedTZDateTime = tz.TZDateTime.from(_selectedDateTime, _selectedTimeZone);
     tz.TZDateTime utcDateTime = selectedTZDateTime.toUtc();
+
     double jd = julianDay(utcDateTime);
 
-    _debugInfo = _generateDebugInfo(utcDateTime, jd);
+    List<double> risingPos = widget.celestialBody.calculateRisingPosition(
+        jd, _selectedCity!.latitude, _selectedCity!.longitude);
+    List<double> settingPos = widget.celestialBody.calculateSettingPosition(
+        jd, _selectedCity!.latitude, _selectedCity!.longitude);
+    List<double> culminatingPos = widget.celestialBody.calculateCulminatingPosition(
+        jd, _selectedCity!.latitude, _selectedCity!.longitude);
 
-    List<String> positionTypes = ['Rising', 'Setting', 'Culminating', 'Nadir'];
-    for (var type in positionTypes) {
-      var position = _calculatePosition(type, jd);
-      _debugInfo += '$type Position: (${position[0].toStringAsFixed(2)}, ${position[1].toStringAsFixed(2)})\n';
-      var nearestCities = findNearestCities(position[0], position[1]);
-      _allNearestCities.addAll(nearestCities);
-    }
+    List<Map<String, dynamic>> nearestRising = findNearestCities(risingPos[0], risingPos[1]);
+    List<Map<String, dynamic>> nearestSetting = findNearestCities(settingPos[0], settingPos[1]);
+    List<Map<String, dynamic>> nearestCulminating = findNearestCities(culminatingPos[0], culminatingPos[1]);
 
+    _allNearestCities = [...nearestRising, ...nearestSetting, ...nearestCulminating];
     _allNearestCities.sort((a, b) => (a['distance'] as double).compareTo(b['distance'] as double));
-    _allNearestCities = _allNearestCities.take(12).toList();
+    _allNearestCities = _allNearestCities.take(9).toList();  // Limit to 9 cities
 
     setState(() {
       _result = formatResults(_allNearestCities, widget.celestialBody.name, context);
       _isLoading = false;
     });
-  }
-
-  List<double> _calculatePosition(String type, double jd) {
-    switch (type) {
-      case 'Rising':
-        return widget.celestialBody.calculateRisingPosition(jd, _selectedCity!.latitude, _selectedCity!.longitude);
-      case 'Setting':
-        return widget.celestialBody.calculateSettingPosition(jd, _selectedCity!.latitude, _selectedCity!.longitude);
-      case 'Culminating':
-        return widget.celestialBody.calculateCulminatingPosition(jd, _selectedCity!.latitude, _selectedCity!.longitude);
-      case 'Nadir':
-        return widget.celestialBody.calculateNadirPosition(jd, _selectedCity!.latitude, _selectedCity!.longitude);
-      default:
-        throw ArgumentError('Invalid position type');
-    }
-  }
-
-  String _generateDebugInfo(tz.TZDateTime utcDateTime, double jd) {
-    return 'Selected DateTime: $_selectedDateTime\n'
-        'UTC DateTime: $utcDateTime\n'
-        'Julian Day: $jd\n';
   }
 }

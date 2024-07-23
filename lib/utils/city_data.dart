@@ -31,7 +31,6 @@ final List<City> cities = [
   City('Marrakech, Morocco', 31.6295, -7.9811, 'Africa/Casablanca'),
   City('Bangkok, Thailand', 13.7563, 100.5018, 'Asia/Bangkok'),
   City('Vancouver, Canada', 49.2827, -123.1207, 'America/Vancouver'),
-  City('Reykjavik, Iceland', 64.1265, -21.8174, 'Atlantic/Reykjavik'),
   City('Singapore', 1.3521, 103.8198, 'Asia/Singapore'),
   City('Cusco, Peru', -13.5317, -71.9675, 'America/Lima'),
   City('Istanbul, Turkey', 41.0082, 28.9784, 'Europe/Istanbul'),
@@ -163,4 +162,5 @@ final List<City> cities = [
   City('Reykjavik, Iceland', 64.1265, -21.8174, 'Atlantic/Reykjavik'),
   City('Papeete, French Polynesia', -17.5516, -149.5584, 'Pacific/Tahiti'),
   City('Apia, Samoa', -13.8506, -171.7513, 'Pacific/Apia'),
+  City('Boston, USA', 42.361145, -71.057083, 'America/New_York')
 ];

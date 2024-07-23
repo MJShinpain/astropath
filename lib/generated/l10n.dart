@@ -130,6 +130,116 @@ class S {
     );
   }
 
+  /// `Select Date`
+  String get selectDate {
+    return Intl.message(
+      'Select Date',
+      name: 'selectDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Time`
+  String get selectTime {
+    return Intl.message(
+      'Select Time',
+      name: 'selectTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `enter date and time`
+  String get enterDateTime {
+    return Intl.message(
+      'enter date and time',
+      name: 'enterDateTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `select date and time`
+  String get selectDateTime {
+    return Intl.message(
+      'select date and time',
+      name: 'selectDateTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OK`
+  String get ok {
+    return Intl.message(
+      'OK',
+      name: 'ok',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `year`
+  String get year {
+    return Intl.message(
+      'year',
+      name: 'year',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `month`
+  String get month {
+    return Intl.message(
+      'month',
+      name: 'month',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `day`
+  String get day {
+    return Intl.message(
+      'day',
+      name: 'day',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `hour`
+  String get hour {
+    return Intl.message(
+      'hour',
+      name: 'hour',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `minute`
+  String get minute {
+    return Intl.message(
+      'minute',
+      name: 'minute',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Selected Date and Time:`
   String get selectedDateTime {
     return Intl.message(
@@ -170,30 +280,30 @@ class S {
     );
   }
 
-  /// `Rising:`
+  /// `Rising`
   String get rising {
     return Intl.message(
-      'Rising:',
+      'Rising',
       name: 'rising',
       desc: '',
       args: [],
     );
   }
 
-  /// `Setting:`
+  /// `Setting`
   String get setting {
     return Intl.message(
-      'Setting:',
+      'Setting',
       name: 'setting',
       desc: '',
       args: [],
     );
   }
 
-  /// `Culminating:`
+  /// `Culminating`
   String get culminating {
     return Intl.message(
-      'Culminating:',
+      'Culminating',
       name: 'culminating',
       desc: '',
       args: [],

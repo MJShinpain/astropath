@@ -8,6 +8,17 @@
   "selectedLocation": "Selected Location:",
   "notSelected": "Not selected",
   "selectBirthDateTime": "Select Birth Date and Time",
+  "selectDate": "Select Date",
+  "selectTime": "Select Time",
+  "enterDateTime": "enter date and time",
+  "selectDateTime": "select date and time",
+  "ok": "OK",
+  "cancel": "Cancel",
+  "year": "year",
+  "month": "month",
+  "day": "day",
+  "hour": "hour",
+  "minute": "minute",
   "selectedDateTime": "Selected Date and Time:",
   "findRomanticCities": "Find Romantic Cities",
   "findMoonCities": "Find Moon Cities",
@@ -19,11 +30,11 @@
       }
     }
   },
-  "rising": "Rising:",
-  "setting": "Setting:",
-  "culminating": "Culminating:",
+  "rising": "Rising",
+  "setting": "Setting",
+  "culminating": "Culminating",
   "noCitiesWithin2000km": "No cities within 2000 km",
   "cityFinder": "City Finder",
   "venusDescription": "Venus",
   "moonDescription": "Moon"
-}
+  }
